@@ -29,6 +29,10 @@
   position: relative;
 }
 
+.inner-svg-bounce:hover svg {
+  @apply animate-bounce
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
