@@ -3,5 +3,11 @@
   "Back": "Back",
   "Balance": "Balance",
   "Incomes": "Incomes",
-  "Spendings": "Spendings"  
+  "Spendings": "Spendings",
+  "ModalTitle.income": "Add income",
+  "ModalTitle.outcome": "Add spendings",
+  "Name": "Name",
+  "Amount": "Amount",
+  "Group": "Group",
+  "Save": "Save"
 }
