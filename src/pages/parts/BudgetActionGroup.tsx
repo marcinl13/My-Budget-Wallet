@@ -11,7 +11,7 @@ export const BudgetActionGroup = () => {
       <button
         className="animate-bounce text-blue-300 hover:text-blue-600 hover:cursor-pointer"
         type="button"
-        onClick={() => setVisibleActions(true)}
+        onClick={() => setVisibleActions(!showActions)}
       >
         <IoIosAddCircleOutline size={40} />
       </button>
