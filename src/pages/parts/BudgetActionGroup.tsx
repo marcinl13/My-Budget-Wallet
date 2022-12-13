@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoIosAddCircleOutline, IoIosTrendingUp, IoIosTrendingDown, IoIosListBox } from "react-icons/io";
 import { ModalBudgetAdd } from "../../components/ModalBudgetAdd";
+import { ModalBudgetGroupAdd } from "../../components/ModalBudgetGroupAdd";
 import { TransactionItemType } from "../../store/Item";
 
 export const BudgetActionGroup = () => {
@@ -20,6 +21,7 @@ export const BudgetActionGroup = () => {
         <div className="flex flex-col items-center transition duration-700 ease-in-out">
           <ActionAddIncome />
           <ActionAddSpendings />
+          <ActionAddGroup />
         </div>
       )}
     </section>
@@ -80,6 +82,27 @@ function ActionAddSpendings() {
           group={""}
         />
       )}
+    </>
+  );
+}
+
+function ActionAddGroup() {
+  const [isVisible, setVisible] = useState(false);
+
+  function handleClick() {
+    setVisible(true);
+  }
+
+  return (
+    <>
+      <button
+        className="flex items-center bg-transparent text-orange-300 hover:text-orange-600 hover:cursor-pointer"
+        onClick={handleClick}
+      >
+        <IoIosListBox size={30} />
+      </button>
+
+      {isVisible && <ModalBudgetGroupAdd onClose={() => setVisible(false)} />}
     </>
   );
 }
