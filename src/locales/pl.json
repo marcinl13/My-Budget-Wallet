@@ -3,5 +3,11 @@
   "Back": "Wtecz",
   "Balance": "Bilans",
   "Incomes": "Przychody",
-  "Spendings": "Wydatki"
+  "Spendings": "Wydatki",
+  "ModalTitle.income": "Dodaj przychód",
+  "ModalTitle.outcome": "Dodaj wydatek",
+  "Name": "Nazwa",
+  "Amount": "Ilość",
+  "Group": "Grupa",
+  "Save": "Zapisz"
 }
