@@ -1,7 +1,6 @@
 import { t } from "i18next";
-import { useSelector } from "react-redux";
-import { ITransactionItem, TransactionItemType } from "../../store/Item";
-import { IState } from "../../store/transactions";
+import { TransactionItemType } from "../../store/Item";
+import { useTotalAmount } from "../../hooks/useTotalAmount";
 
 export function Balance() {
   const amountOfIncome: number = useTotalAmount(TransactionItemType.INCOME);
@@ -17,18 +16,4 @@ export function Balance() {
       {!isPositive && <h2 className="text-red-400">{diffAmount.toFixed(2)} PLN</h2>}
     </section>
   );
-}
-
-function useTotalAmount(type: string): number {
-  const data: ITransactionItem[] = useSelector(function (state: IState) {
-    if (type === TransactionItemType.INCOME) {
-      return state.counter.incomeList;
-    }
-
-    return state.counter.outcomeList;
-  });
-
-  return data.reduce((accumulator: number, object: ITransactionItem) => {
-    return accumulator + object.amount;
-  }, 0);
 }
