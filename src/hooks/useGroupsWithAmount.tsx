@@ -8,13 +8,17 @@ export type IUserData = {
 };
 
 export function useGroupsWithAmount(type: string) {
-  const data: ITransactionItem[] = useSelector(function (state: IState) {
+  const data: ITransactionItem[] = useSelector((state: IState) => {
     if (type === TransactionItemType.INCOME) {
       return state.counter.incomeList;
     }
 
     return state.counter.outcomeList;
   });
+
+  if (!data) {
+    return [];
+  }
 
   return data.reduce((acc, d: ITransactionItem) => {
     const found = acc.find((a) => a.group === d.group);
