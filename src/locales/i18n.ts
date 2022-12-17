@@ -3,8 +3,8 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import i18n from "i18next";
 
 // translations
-import translationEN from "./locales/en.json";
-import translationPL from "./locales/pl.json";
+import translationEN from "./langs/en.json";
+import translationPL from "./langs/pl.json";
 
 i18n
   .use(LanguageDetector)
