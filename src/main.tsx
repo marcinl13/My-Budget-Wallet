@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { I18nextProvider } from "react-i18next";
 import { Provider } from "react-redux";
 import { saveState } from "./browser-storage";
-import i18n from "./i18n";
+import i18n from "./locales/i18n";
 import store from "./store";
 import App from "./App";
 import "./index.css";
