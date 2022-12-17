@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { I18nextProvider } from "react-i18next";
 import { Provider } from "react-redux";
-import { saveState } from "./browser-storage";
+import { saveState, StoreKeys } from "./store/browser-storage";
 import i18n from "./locales/i18n";
 import store from "./store";
 import App from "./App";
@@ -14,7 +14,9 @@ store.subscribe(
   // we use debounce to save the state once each 800ms
   // for better performances in case multiple changes occur in a short time
   debounce(() => {
-    saveState(store.getState().counter);
+    saveState(StoreKeys.income, store.getState().counter.incomeList);
+    saveState(StoreKeys.spendings, store.getState().counter.outcomeList);
+    saveState(StoreKeys.groups, store.getState().counter.groups);
   }, 800)
 );
 

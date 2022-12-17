@@ -24,12 +24,14 @@ export type IState = {
 }
 
 export type IGroup = string;
+export type Income = ITransactionItem;
+export type Spending = ITransactionItem;
 
 export const transactionsSlice = createSlice({
   name: "transactions",
   initialState: {
-    incomeList: [] as ITransactionItem[],
-    outcomeList: [] as ITransactionItem[],
+    incomeList: [] as Income[],
+    outcomeList: [] as Spending[],
     groups: ['group1', 'group2', 'group3', 'group4'] as IGroup[],
   },
   reducers: {
