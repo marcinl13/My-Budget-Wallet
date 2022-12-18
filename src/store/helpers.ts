@@ -1,16 +1,16 @@
-import { IInitialState } from "./transactions";
+import { InitialState } from "./transactions";
 
 export const StoreKeys = {
   income: 'income',
   spendings: 'spendings',
-  groups: 'groups'
+  categories: 'categories'
 }
 
 export function loadState(key: string) {
   try {
     const serializedState = localStorage.getItem(key);
     if (!serializedState) return undefined;
-    return JSON.parse(serializedState) as IInitialState;
+    return JSON.parse(serializedState) as InitialState;
   } catch (e) {
     return undefined;
   }

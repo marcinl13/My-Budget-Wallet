@@ -1,23 +1,21 @@
 import { t } from "i18next";
 import { useSelector } from "react-redux";
-import { ITransactionItem, TransactionItemType } from "../store/Item";
-import { IState } from "../store/transactions";
-
-type TransactionTableProps = {
-  type: string;
-};
+import { Income, IState, Spending, ItemType } from "../store/transactions";
 
 type TableBodyProps = {
-  transactions: ITransactionItem[];
+  transactions: Income[] | Spending[];
+};
+type TableRecentlyAddedProps = {
+  type: ItemType;
 };
 
-export const TableRecentlyAdded = ({ type }: TransactionTableProps) => {
-  const data = useSelector(function (state: IState) {
-    if (type === TransactionItemType.OUTCOME) {
-      return state.counter.outcomeList;
+export const TableRecentlyAdded = ({ type }: TableRecentlyAddedProps) => {
+  const data = useSelector((state: IState) => {
+    if (type === ItemType.OUTCOME) {
+      return state.transactionReducer.outcomeList;
     }
 
-    return state.counter.incomeList;
+    return state.transactionReducer.incomeList;
   });
 
   if (!data.length) {
@@ -42,10 +40,10 @@ export const TableRecentlyAdded = ({ type }: TransactionTableProps) => {
 function TableBody({ transactions }: TableBodyProps) {
   return (
     <tbody>
-      {transactions.map((item: ITransactionItem, index: number) => (
+      {transactions.map((item: Income | Spending, index: number) => (
         <tr key={item.id} className={index % 2 ? "" : "bg-slate-400"}>
           <td className="text-sm font-light p-2 whitespace-nowrap text-left">{item.text}</td>
-          <td className="text-sm font-light p-2 whitespace-nowrap text-center">{item.group}</td>
+          <td className="text-sm font-light p-2 whitespace-nowrap text-center">{item.category}</td>
           <td className="text-sm font-light p-2 whitespace-nowrap text-right">{`$${item.amount.toFixed(2)}`}</td>
         </tr>
       ))}

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { IoIosAddCircleOutline, IoIosTrendingUp, IoIosTrendingDown, IoIosListBox } from "react-icons/io";
 import { ModalBudgetAdd } from "../../components/ModalBudgetAdd";
-import { ModalBudgetGroupAdd } from "../../components/ModalBudgetGroupAdd";
-import { TransactionItemType } from "../../store/Item";
+import { ModalBudgetCategoryAdd } from "../../components/ModalBudgetCategoryAdd";
+import { ItemType } from "../../store/transactions";
 
 export const BudgetActionGroup = () => {
   const [showActions, setVisibleActions] = useState(false);
@@ -21,7 +21,7 @@ export const BudgetActionGroup = () => {
         <div className="flex flex-col items-center transition duration-700 ease-in-out">
           <ActionAddIncome />
           <ActionAddSpendings />
-          <ActionAddGroup />
+          <ActionAddCategory />
         </div>
       )}
     </section>
@@ -45,13 +45,7 @@ function ActionAddIncome() {
       </button>
 
       {isVisible && (
-        <ModalBudgetAdd
-          onClose={() => setVisible(false)}
-          type={TransactionItemType.INCOME}
-          amount={0}
-          text={""}
-          group={""}
-        />
+        <ModalBudgetAdd onClose={() => setVisible(false)} type={ItemType.INCOME} amount={0} text={""} group={""} />
       )}
     </>
   );
@@ -74,19 +68,13 @@ function ActionAddSpendings() {
       </button>
 
       {isVisible && (
-        <ModalBudgetAdd
-          onClose={() => setVisible(false)}
-          type={TransactionItemType.OUTCOME}
-          amount={0}
-          text={""}
-          group={""}
-        />
+        <ModalBudgetAdd onClose={() => setVisible(false)} type={ItemType.OUTCOME} amount={0} text={""} group={""} />
       )}
     </>
   );
 }
 
-function ActionAddGroup() {
+function ActionAddCategory() {
   const [isVisible, setVisible] = useState(false);
 
   function handleClick() {
@@ -102,7 +90,7 @@ function ActionAddGroup() {
         <IoIosListBox size={30} />
       </button>
 
-      {isVisible && <ModalBudgetGroupAdd onClose={() => setVisible(false)} />}
+      {isVisible && <ModalBudgetCategoryAdd onClose={() => setVisible(false)} />}
     </>
   );
 }

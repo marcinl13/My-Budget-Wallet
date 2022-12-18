@@ -1,4 +1,5 @@
 {
+  "No data": "No data",
   "Not found": "Not found",
   "Back": "Back",
   "Balance": "Balance",
@@ -6,9 +7,9 @@
   "Spendings": "Spendings",
   "ModalTitle.income": "Add income",
   "ModalTitle.outcome": "Add spendings",
-  "Add Group": "Add group",
+  "Add Category": "Add category",
   "Name": "Name",
   "Amount": "Amount",
-  "Group": "Group",
+  "Category": "Category",
   "Save": "Save"
 }

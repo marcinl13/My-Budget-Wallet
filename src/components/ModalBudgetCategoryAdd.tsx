@@ -3,21 +3,21 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { IoIosClose } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import { addGroup } from "../store/transactions";
+import { addCategory } from "../store/transactions";
 
-export type ModalBudgetGroupAddProps = {
+export type ModalBudgetCategoryAddProps = {
   onClose: () => void;
 };
 
-export const ModalBudgetGroupAdd = ({ onClose }: ModalBudgetGroupAddProps) => {
+export const ModalBudgetCategoryAdd = ({ onClose }: ModalBudgetCategoryAddProps) => {
   const dispatch = useDispatch();
-  const [group, setGroup] = useState<string>("");
+  const [categoryName, setCategoryName] = useState<string>("");
 
   function handleSubmit(event: Event): void {
     event.preventDefault();
 
     // push to store
-    dispatch(addGroup({ text: group }));
+    dispatch(addCategory({ text: categoryName }));
 
     onClose();
   }
@@ -42,7 +42,7 @@ export const ModalBudgetGroupAdd = ({ onClose }: ModalBudgetGroupAddProps) => {
             </button>
 
             <div className="px-6 py-6 lg:px-8">
-              <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">{t("Add Group")}</h3>
+              <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">{t("Add Category")}</h3>
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label htmlFor="group" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -53,7 +53,7 @@ export const ModalBudgetGroupAdd = ({ onClose }: ModalBudgetGroupAddProps) => {
                     name="group"
                     id="group"
                     placeholder={t("Name").toString()}
-                    onChange={(e) => setGroup(e.target.value)}
+                    onChange={(e) => setCategoryName(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     autoComplete="off"
                     required

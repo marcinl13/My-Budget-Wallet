@@ -1,10 +1,10 @@
 import { t } from "i18next";
-import { TransactionItemType } from "../../store/Item";
 import { useTotalAmount } from "../../hooks/useTotalAmount";
+import { ItemType } from "../../store/transactions";
 
 export function Balance() {
-  const amountOfIncome: number = useTotalAmount(TransactionItemType.INCOME);
-  const amountOfSpendings: number = useTotalAmount(TransactionItemType.OUTCOME);
+  const amountOfIncome: number = useTotalAmount(ItemType.INCOME);
+  const amountOfSpendings: number = useTotalAmount(ItemType.OUTCOME);
   const diffAmount: number = amountOfIncome - amountOfSpendings;
   const isPositive: boolean = diffAmount >= 0;
 

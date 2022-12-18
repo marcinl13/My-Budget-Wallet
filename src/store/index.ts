@@ -1,7 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import { loadState, StoreKeys } from './browser-storage'
-import { ITransactionItem } from './Item'
-import counterReducer, { IGroup } from './transactions'
+import { defaultCategories } from '../hooks/useTransactionCategories'
+import { loadState, StoreKeys } from './helpers'
+import transactionReducer, { Category, Income, Spending } from './transactions'
 
 // https://redux-toolkit.js.org/api/getDefaultMiddleware
 export default configureStore({
@@ -9,14 +9,14 @@ export default configureStore({
     serializableCheck: false
   }),
   reducer: {
-    counter: counterReducer
+    transactionReducer
   },
   // here we restore the previously persisted state
   preloadedState: {
-    counter: {
-      incomeList: (loadState(StoreKeys.income) as unknown as ITransactionItem[]) || [],
-      outcomeList: (loadState(StoreKeys.spendings) as unknown as ITransactionItem[]) || [],
-      groups: (loadState(StoreKeys.groups) as unknown as IGroup[]) || [],
+    transactionReducer: {
+      incomeList: (loadState(StoreKeys.income) as unknown as Income[]) || [],
+      outcomeList: (loadState(StoreKeys.spendings) as unknown as Spending[]) || [],
+      categoryList: (loadState(StoreKeys.categories) as unknown as Category[]) || defaultCategories,
     }
   },
 })
