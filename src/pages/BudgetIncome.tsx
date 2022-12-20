@@ -1,7 +1,7 @@
 import { t } from "i18next";
 import { BackToHome } from "../components/BackToHome";
 import { TableRecentlyAdded } from "../components/TableRecentlyAdded";
-import { TransactionItemType } from "../store/Item";
+import { ItemType } from "../store/transactions";
 
 export const BudgetIncome = () => {
   return (
@@ -10,7 +10,7 @@ export const BudgetIncome = () => {
 
       <h1 className="text-white my-3">{t("Incomes")}</h1>
 
-      <TableRecentlyAdded type={TransactionItemType.INCOME} />
+      <TableRecentlyAdded type={ItemType.INCOME} />
     </>
   );
 };

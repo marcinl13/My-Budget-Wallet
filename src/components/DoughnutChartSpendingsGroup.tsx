@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { t } from "i18next";
 import { Doughnut } from "react-chartjs-2";
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js/auto";
-import { IUserData } from "../hooks/useGroupsWithAmount";
+import { IUserData } from "../hooks/useChartGroupsData";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -9,21 +9,14 @@ type DoughnutChartSpendingsGroupProps = {
   chartData: IUserData[];
   total: number;
 };
-export const DoughnutChartSpendingsGroup = ({ chartData, total }: DoughnutChartSpendingsGroupProps) => {
-  const data = {
-    labels: chartData.map((data: IUserData) => data.group),
-    datasets: [
-      {
-        data: chartData.map((data: IUserData) => data.amount),
-        cutout: "70%",
-      },
-    ],
-  };
 
+export const DoughnutChartSpendingsGroup = ({ chartData, total }: DoughnutChartSpendingsGroupProps) => {
   const plugins = [
     {
+      id: "doughnutChartSpendingsGroup",
       beforeDraw: function (chart: { ctx: any; chartArea: { top: number; width: number; height: number } }) {
-        const text = `${total.toFixed(2)} PLN`;
+        const text = chartData.length ? `${total.toFixed(2)} PLN` : `${t("No data")}`;
+
         const {
           ctx,
           chartArea: { top, width, height },
@@ -42,6 +35,16 @@ export const DoughnutChartSpendingsGroup = ({ chartData, total }: DoughnutChartS
       },
     },
   ];
+
+  const data = {
+    labels: chartData.map((data: IUserData) => data.group),
+    datasets: [
+      {
+        data: chartData.map((data: IUserData) => data.amount),
+        cutout: "70%",
+      },
+    ],
+  };
 
   return <Doughnut className="bg-slate-300 rounded p-2" data={data} plugins={plugins} />;
 };

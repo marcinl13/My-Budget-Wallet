@@ -1,14 +1,15 @@
 {
-  "Not found": "Brak danych",
+  "No data": "Brak danych",
+  "Not found": "Nie znaleziono",
   "Back": "Wtecz",
   "Balance": "Bilans",
   "Incomes": "Przychody",
   "Spendings": "Wydatki",
   "ModalTitle.income": "Dodaj przychód",
   "ModalTitle.outcome": "Dodaj wydatek",
-  "Add Group": "Dodaj grupę",
+  "Add Category": "Dodaj kategorię",
   "Name": "Nazwa",
   "Amount": "Ilość",
-  "Group": "Grupa",
+  "Category": "Kategoria",
   "Save": "Zapisz"
 }

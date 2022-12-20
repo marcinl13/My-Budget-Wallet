@@ -2,33 +2,37 @@ import { t } from "i18next";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { IoIosClose } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
-import { TransactionItemType } from "../store/Item";
-import { IGroup, IState, IPayload, addIncomeItem, addOutcomeItem } from "../store/transactions";
+import { useDispatch } from "react-redux";
+import { useTransactionCategories } from "../hooks/useTransactionCategories";
+import { addIncome, addSpending, ItemType, Category } from "../store/transactions";
 
 export type ModalBudgetAddProps = {
   onClose: () => void;
-} & IPayload;
+  amount: number;
+  text: string;
+  type: string;
+  group: string;
+};
 
 export const ModalBudgetAdd = ({ onClose, type, text = "", amount = 0, group = "" }: ModalBudgetAddProps) => {
   const dispatch = useDispatch();
-  const groups: IGroup[] = useSelector((state: IState) => state.counter.groups);
+  const categories: Category[] = useTransactionCategories();
 
   const [transactionText, setText] = useState<string>(text);
   const [transactionAmount, setAmount] = useState<number>(amount);
-  const [transactionGroup, setGroup] = useState<string>(group);
+  const [category, setCategory] = useState<string>(group);
 
   function handleSubmit(event: Event): void {
     event.preventDefault();
-    const payload: IPayload = {
+    const payload = {
       text: transactionText,
       amount: transactionAmount,
-      group: transactionGroup,
+      category,
       type,
     };
 
     // push to store
-    dispatch(type === TransactionItemType.INCOME ? addIncomeItem(payload) : addOutcomeItem(payload));
+    dispatch(type === ItemType.INCOME ? addIncome(payload) : addSpending(payload));
 
     onClose();
   }
@@ -88,17 +92,17 @@ export const ModalBudgetAdd = ({ onClose, type, text = "", amount = 0, group = "
                 </div>
 
                 <div>
-                  <label htmlFor="group" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    {t("Group")}
+                  <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    {t("Category")}
                   </label>
                   <select
-                    name="group"
-                    id="group"
-                    onChange={(e) => setGroup(e.target.value)}
+                    name="category"
+                    id="category"
+                    onChange={(e) => setCategory(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   >
                     <option value=""></option>
-                    {groups.map((name: string) => (
+                    {categories.map((name: string) => (
                       <option value={name} key={name}>
                         {name}
                       </option>
