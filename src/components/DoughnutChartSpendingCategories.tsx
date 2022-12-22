@@ -2,20 +2,21 @@ import { t } from "i18next";
 import { Doughnut } from "react-chartjs-2";
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js/auto";
 import { IUserData } from "../hooks/useChartGroupsData";
+import { formatCurrency } from "../helpers/formatCurrency";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-type DoughnutChartSpendingsGroupProps = {
+type DoughnutChartSpendingCategoriesProps = {
   chartData: IUserData[];
   total: number;
 };
 
-export const DoughnutChartSpendingsGroup = ({ chartData, total }: DoughnutChartSpendingsGroupProps) => {
+export const DoughnutChartSpendingCategories = ({ chartData, total }: DoughnutChartSpendingCategoriesProps) => {
   const plugins = [
     {
-      id: "doughnutChartSpendingsGroup",
+      id: "doughnutChartSpendingCategories",
       beforeDraw: function (chart: { ctx: any; chartArea: { top: number; width: number; height: number } }) {
-        const text = chartData.length ? `${total.toFixed(2)} PLN` : `${t("No data")}`;
+        const text = chartData.length ? formatCurrency(total) : `${t("No data")}`;
 
         const {
           ctx,
