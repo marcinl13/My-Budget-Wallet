@@ -27,7 +27,7 @@ type CarouselItemProps = {
 
 function CarouselItem({ item }: CarouselItemProps) {
   return (
-    <div className="flex flex-col gap-4 items-center justify-center bg-slate-400 rounded p-3 text-white min-w-expensePill min-h-expensePill">
+    <div className="flex flex-col gap-4 items-center justify-center bg-slate-500 hover:bg-slate-400 hover:cursor-pointer text-white rounded p-3 shadow-md min-w-expensePill min-h-expensePill">
       <p className="break-words">{item.category}</p>
       <p className="font-bold">{formatCurrency(item.total)}</p>
     </div>
