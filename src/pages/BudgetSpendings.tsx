@@ -1,6 +1,6 @@
 import { t } from "i18next";
 import { BackToHome } from "../components/BackToHome";
-import { DoughnutChartSpendingsGroup } from "../components/DoughnutChartSpendingsGroup";
+import { DoughnutChartSpendingCategories } from "../components/DoughnutChartSpendingCategories";
 import { TableRecentlyAdded } from "../components/TableRecentlyAdded";
 import { useChartGroupsData } from "../hooks/useChartGroupsData";
 import { useTotalAmount } from "../hooks/useTotalAmount";
@@ -18,7 +18,7 @@ export const BudgetSpendings = () => {
         <h1 className="text-white">{t("Spendings")}</h1>
       </div>
 
-      <DoughnutChartSpendingsGroup chartData={chartData} total={total} />
+      <DoughnutChartSpendingCategories chartData={chartData} total={total} />
 
       <TableRecentlyAdded type={ItemType.OUTCOME} />
 
