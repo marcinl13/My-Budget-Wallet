@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { Balance } from "./parts/Balance";
 import { BudgetActionGroup } from "./parts/BudgetActionGroup";
 import { ExpenseCategoryCarousel } from "./parts/ExpenseCategoryCarousel";
@@ -10,7 +11,7 @@ export const Home = () => {
       <SpendingAndIncomes />
       <BudgetActionGroup />
 
-      <h3 className="text-white text-left font-bold">Recent expenses</h3>
+      <h3 className="text-white text-left font-bold">{t("Recent category expenses")}</h3>
       <ExpenseCategoryCarousel />
     </main>
   );
