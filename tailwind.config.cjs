@@ -2,7 +2,10 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      minWidth: { expensePill: "120px" },
+      minHeight: { expensePill: "110px" },
+    },
   },
   plugins: [],
 };

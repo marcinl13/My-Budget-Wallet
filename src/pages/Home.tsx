@@ -1,5 +1,6 @@
 import { Balance } from "./parts/Balance";
 import { BudgetActionGroup } from "./parts/BudgetActionGroup";
+import { ExpenseCategoryCarousel } from "./parts/ExpenseCategoryCarousel";
 import { SpendingAndIncomes } from "./parts/SpendingAndIncomes";
 
 export const Home = () => {
@@ -8,6 +9,9 @@ export const Home = () => {
       <Balance />
       <SpendingAndIncomes />
       <BudgetActionGroup />
+
+      <h3 className="text-white text-left font-bold">Recent expenses</h3>
+      <ExpenseCategoryCarousel />
     </main>
   );
 };
