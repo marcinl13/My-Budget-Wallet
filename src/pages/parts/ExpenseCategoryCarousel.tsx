@@ -1,7 +1,7 @@
 import { formatCurrency } from "../../helpers/formatCurrency";
 import { defaultCategories } from "../../hooks/useTransactionCategories";
 import { useTransactionData } from "../../hooks/useTransactionData";
-import { Category, Income, ItemType, Spending } from "../../store/transactions";
+import { Category, ItemType, Spending } from "../../store/transactions";
 
 type Expense = {
   category: string;
@@ -34,7 +34,7 @@ function CarouselItem({ item }: CarouselItemProps) {
   );
 }
 
-function useExpenses() {
+function useExpenses(): Expense[] {
   const data = useTransactionData(ItemType.OUTCOME);
 
   if (!data.length) {
